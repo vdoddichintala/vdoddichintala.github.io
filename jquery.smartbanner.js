@@ -43,8 +43,7 @@
     }
     else if (UA.match(/Android/i) !== null) {
       this.type = 'android';
-    }
-    alert(this.type);
+    } 
     // Don't show banner if device isn't iOS or Android, website is loaded in app or user dismissed banner.
     if (!this.type || standalone || this.getCookie('sb-closed') || this.getCookie('sb-installed')) {
       return;
@@ -127,6 +126,8 @@
 
       var link = this.options.url || (function() {
         switch (this.type) {
+          case 'ios': 
+            return 'https://itunes.apple.com/us/app/industrial-equipment-service/id';
           case 'android':
             return 'https://play.google.com/store/apps/details?id=com.svd.up&referrer=utm_source%3Dweb%26utm_medium%3Dlink%26utm_content%3Dmenu';
           case 'kindle':
@@ -136,7 +137,7 @@
               ? 'ms-windows-store://pdp/?productid='
               : 'ms-windows-store:navigate?appid=';
         }
-        return 'https://itunes.apple.com/us/app/industrial-equipment-service/id1308328999?mt=8';
+        return 'https://itunes.apple.com/us/app/industrial-equipment-service/id1308328999';
       }.call(this) + this.appId);
 
       var inStore = !price ? '' : (function() {
@@ -148,6 +149,8 @@
             return result + this.options.inAmazonAppStore;
           case 'windows':
             return result + this.options.inWindowsStore;
+            case 'ios':
+              return result + this.options.inAppStore;
         }
         return result + this.options.inAppStore
       }.call(this));
