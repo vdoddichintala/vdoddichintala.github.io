@@ -24,6 +24,7 @@
     // Detect banner type (iOS or Android).
     if (this.options.force) {
       this.type = this.options.force;
+     
     }
     else if (UA.match(/Windows Phone/i) !== null && UA.match(/Edge|Touch/i) !== null) {
       this.type = 'windows';
@@ -43,6 +44,7 @@
     else if (UA.match(/Android/i) !== null) {
       this.type = 'android';
     }
+    alert(this.type);
     // Don't show banner if device isn't iOS or Android, website is loaded in app or user dismissed banner.
     if (!this.type || standalone || this.getCookie('sb-closed') || this.getCookie('sb-installed')) {
       return;
